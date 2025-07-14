@@ -3,13 +3,13 @@ package level2;
 public class Calculator {
 
     private double num1, num2, result;
-    private String operator;
+    private char operator;
 
-    public void setOperator(String operator) {
+    public void setOperator(char operator) {
         this.operator = operator;
     }
 
-    public String getOperator() {
+    public char getOperator() {
         return this.operator;
     }
 
@@ -29,16 +29,34 @@ public class Calculator {
         return this.num2;
     }
 
-    public void setResult(double value) {
-        result = value;
-    }
-
     public double getResult() {
         return this.result;
     }
 
-    public double calculate() {
-
+    public double calculate(double num1, double num2, char operator) {
+        switch (operator) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+            case ':':
+                if (num2 == 0) {
+                    throw new ArithmeticException("\uD83D\uDEAB 0으로 나눌 수 없습니다!");
+//                    isOperator = false;
+                } else {
+                    result = num1 / num2;
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("\uD83D\uDEAB 올바르지 않은 연산자입니다. 다시 입력해주세요!");
+//                isOperator = false;
+        }
+        return result;
     }
-
 }
