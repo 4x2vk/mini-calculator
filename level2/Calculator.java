@@ -1,8 +1,12 @@
 package level2;
 
-public class Calculator {
+import java.util.ArrayList;
+import java.util.List;
 
-    private double num1, num2, result;
+public class Calculator {
+    private List<Double> results = new ArrayList<>();
+
+    private double num1, num2;
     private char operator;
 
     public void setOperator(char operator) {
@@ -29,11 +33,18 @@ public class Calculator {
         return this.num2;
     }
 
-    public double getResult() {
-        return this.result;
+    public List<Double> getResults() {
+        return this.results;
     }
 
-    public double calculate(double num1, double num2, char operator) {
+    public void removeFirstResult() {
+        if (!results.isEmpty()) {
+            results.remove(0);
+        }
+    }
+
+    public double calculate() {
+        double result;
         switch (operator) {
             case '+':
                 result = num1 + num2;
@@ -46,17 +57,13 @@ public class Calculator {
                 break;
             case '/':
             case ':':
-                if (num2 == 0) {
-                    throw new ArithmeticException("\uD83D\uDEAB 0으로 나눌 수 없습니다!");
-//                    isOperator = false;
-                } else {
-                    result = num1 / num2;
-                }
+                if (num2 == 0) throw new ArithmeticException("\uD83D\uDEAB 0으로 나눌 수 없습니다!");
+                result = num1 / num2;
                 break;
             default:
                 throw new IllegalArgumentException("\uD83D\uDEAB 올바르지 않은 연산자입니다. 다시 입력해주세요!");
-//                isOperator = false;
         }
+        results.add(result);
         return result;
     }
 }
