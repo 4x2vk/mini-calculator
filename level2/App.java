@@ -1,5 +1,6 @@
 package level2;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -14,8 +15,10 @@ public class App {
             System.out.println("✨     SIMPLE CALCULATOR    ✨");
             System.out.println("==============================");
             System.out.println("       'exit' 입력하면 종료     ");
-            System.out.println("      'delete' 입력하면 종료     ");
+            System.out.println("      'delete' 첫 결과 삭제     ");
             System.out.println("                              ");
+
+            List<Double> checkList = calculator.getResults();
 
             System.out.print("👉 1번째 숫자 입력: ");
             String firstInput = input.nextLine();
@@ -23,6 +26,7 @@ public class App {
             if (firstInput.equals("delete")) {
                 calculator.removeFirstResult();
                 System.out.println("🗑️ 첫 결과가 삭제되었습니다!");
+                System.out.println(checkList);
                 continue;
             }
 
@@ -32,6 +36,7 @@ public class App {
             if (secondInput.equals("delete")) {
                 calculator.removeFirstResult();
                 System.out.println("🗑️ 첫 결과가 삭제되었습니다!");
+                System.out.println(checkList);
                 continue;
             }
 
@@ -55,6 +60,7 @@ public class App {
             if (operator.equals("delete")) {
                 calculator.removeFirstResult();
                 System.out.println("🗑️ 첫 결과가 삭제되었습니다!");
+                System.out.println(checkList);
                 continue;
             }
             char op = operator.charAt(0);

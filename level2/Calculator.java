@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
-    private List<Double> results = new ArrayList<>();
+    private final List<Double> results = new ArrayList<>();
 
     private double num1, num2;
     private char operator;
@@ -44,25 +44,16 @@ public class Calculator {
     }
 
     public double calculate() {
-        double result;
-        switch (operator) {
-            case '+':
-                result = num1 + num2;
-                break;
-            case '-':
-                result = num1 - num2;
-                break;
-            case '*':
-                result = num1 * num2;
-                break;
-            case '/':
-            case ':':
+        double result = switch (operator) {
+            case '+' -> num1 + num2;
+            case '-' -> num1 - num2;
+            case '*' -> num1 * num2;
+            case '/', ':' -> {
                 if (num2 == 0) throw new ArithmeticException("\uD83D\uDEAB 0으로 나눌 수 없습니다!");
-                result = num1 / num2;
-                break;
-            default:
-                throw new IllegalArgumentException("\uD83D\uDEAB 올바르지 않은 연산자입니다. 다시 입력해주세요!");
-        }
+                yield num1 / num2;
+            }
+            default -> throw new IllegalArgumentException("\uD83D\uDEAB 올바르지 않은 연산자입니다. 다시 입력해주세요!");
+        };
         results.add(result);
         return result;
     }
