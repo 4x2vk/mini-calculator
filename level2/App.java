@@ -23,22 +23,11 @@ public class App {
             System.out.print("👉 1번째 숫자 입력: ");
             String firstInput = input.nextLine();
             if(firstInput.equals("exit")) break;
-            if (firstInput.equals("delete")) {
-                calculator.removeFirstResult();
-                System.out.println("🗑️ 첫 결과가 삭제되었습니다!");
-                System.out.println(checkList);
-                continue;
-            }
+            if (otherInput(firstInput, calculator, checkList)) continue;
 
             System.out.print("👉 2번째 숫자 입력: ");
             String secondInput = input.nextLine();
-            if(secondInput.equals("exit")) break;
-            if (secondInput.equals("delete")) {
-                calculator.removeFirstResult();
-                System.out.println("🗑️ 첫 결과가 삭제되었습니다!");
-                System.out.println(checkList);
-                continue;
-            }
+            if (otherInput(secondInput, calculator, checkList)) continue;
 
             double num1, num2;
 
@@ -56,13 +45,7 @@ public class App {
 
             System.out.print("사용 가능한 연산자 [+  -  *  / ]: ");
             String operator = input.nextLine();
-            if(operator.equals("exit")) break;
-            if (operator.equals("delete")) {
-                calculator.removeFirstResult();
-                System.out.println("🗑️ 첫 결과가 삭제되었습니다!");
-                System.out.println(checkList);
-                continue;
-            }
+            if (otherInput(secondInput, calculator, checkList)) continue;
             char op = operator.charAt(0);
 
             calculator.setNum1(num1);
@@ -80,5 +63,17 @@ public class App {
         }
         System.out.println("👋 계산기를 종료합니다. 감사합니다!");
         input.close();
+    }
+    private static boolean otherInput(String input, Calculator calculator, List<Double> checkList) {
+        if (input.equals("exit")) return true;
+
+        if (input.equals("delete")) {
+            calculator.removeFirstResult();
+            System.out.println("🗑️ 첫 결과가 삭제되었습니다!");
+            System.out.println("📄 현재 결과 목록: " + checkList);
+            return true;
+        }
+
+        return false;
     }
 }
