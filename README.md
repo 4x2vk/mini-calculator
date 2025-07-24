@@ -14,6 +14,10 @@ Also keeps track of all results and allows you to delete the earliest result.
 
 ---
 
+## Requirements
+- Java Development Kit (JDK) 17
+- IDE for Java development
+
 ## 🚀 How to Run
 
 Follow these steps to run the project in your local Java environment:
